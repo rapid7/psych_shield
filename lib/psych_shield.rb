@@ -33,7 +33,7 @@ class PsychShield
 
 	def self.allowed?(o)
 		res = @@allowed_objects.include?(o.class.to_s)
-		@callback.call(o.class.to_s, res) if @callback
+		@@callback.call(o.class.to_s, res) if @@callback
 		res
 	end
 

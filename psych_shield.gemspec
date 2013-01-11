@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "psych_shield"
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.authors     = ["HD Moore"]
   s.email       = ["hdm@rapid7.com"]
   s.homepage    = ""
