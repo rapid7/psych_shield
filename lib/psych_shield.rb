@@ -34,8 +34,8 @@ class PsychShield
 	end
 
 	def self.allowed?(o)
-		res = @@allowed_objects.include?(o.class.to_s)
-		@@callback.call(o.class.to_s, res) if @@callback
+		res = @@allowed_objects.include?(o.to_s)
+		@@callback.call(o.to_s, res) if @@callback
 		res
 	end
 
@@ -52,20 +52,10 @@ module Psych
 module Visitors
 class ToRuby
 
-	alias_method :shielded_revive_hash, :revive_hash
-	def revive_hash hash, o
-		unless PsychShield.allowed?(hash)
-			return PsychShield::DeniedObject.new
-		end
-		shielded_revive_hash(hash,o)
-	end
-
-	alias_method :shielded_init_with, :init_with
-	def init_with o, h, node
-		unless PsychShield.allowed?(o)
-			return PsychShield::DeniedObject.new
-		end
-		shielded_init_with(o,h,node)
+	alias_method :shielded_resolve_class, :resolve_class
+	def resolve_class klass
+		return unless PsychShield.allowed?(klass)
+		shielded_resolve_class(klass)
 	end
 
 end
