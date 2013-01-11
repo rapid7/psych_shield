@@ -19,6 +19,8 @@ class PsychShield
 		NilClass TrueClass FalseClass
 	}
 
+	@@callback = nil
+
 	def self.add(name)
 		@@allowed_objects << name
 	end
