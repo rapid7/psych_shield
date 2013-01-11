@@ -8,7 +8,9 @@ your application.
 
 This is a dirty hack that allows applications that need to accept
 untrusted YAML input to continue doing so until they can be ported
-to a new format.
+to a new format. Note that this DOES NOT protect against the full
+set of issues identified in CVE-2013-0156. The primary use case of
+this gem is to lock down YAML.load() calls.
 
 
 To protect a Ruby on Rails application, add the following to Gemfile:
